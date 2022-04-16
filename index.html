@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Minha Lista de Tarefas</title>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="dentro">
+            <h2>{{ titulo }}</h2>
+            <input @keyup.enter="adicionarTarefa" type="text" v-model="novatarefa" placeholder="Digite aqui sua tarefa">
+            <span><button @click="adicionarTarefa">Adicionar</button></span>
+            <ul>
+                <li v-for="(tarefa, index) in tarefas" :key="index" :class="{ 'removed': tarefa.checked }">
+                    <input v-model="tarefa.checked" type="checkbox">
+                    <label>{{ tarefa.titulo }}</label>
+                </li>
+            </ul>
+            <p>Completas: <span>{{ tarefasCompletas }}</span></p>
+            <p>Incompletas: <span>{{ tarefasIncompletas }}</span></p>
+            <p>Todas as tarefas: <span>{{ todasTarefas }}</span></p>
+
+
+            <div class="footer">
+                Nomear lista:
+                <input type="text" v-model="titulo">
+                <button @click="limparTarefas">Limpar Tudo</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
